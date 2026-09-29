@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY,name VARCHAR(100),email VARCHAR(120) UNIQUE NOT NULL,password_hash VARCHAR(255) NOT NULL,created_at TIMESTAMP DEFAULT now());
+CREATE TABLE IF NOT EXISTS plants(id SERIAL PRIMARY KEY,user_id INT REFERENCES users(id),plant_name VARCHAR(100),crop_type VARCHAR(60),location VARCHAR(120),created_at TIMESTAMP DEFAULT now());
+CREATE TABLE IF NOT EXISTS predictions(id SERIAL PRIMARY KEY,plant_id INT REFERENCES plants(id),image_path VARCHAR(255),disease VARCHAR(120),confidence FLOAT,damage_percentage FLOAT,severity VARCHAR(20),health_score FLOAT,survival_probability FLOAT,risk_level VARCHAR(20),created_at TIMESTAMP DEFAULT now());
+CREATE TABLE IF NOT EXISTS sensor_data(id SERIAL PRIMARY KEY,plant_id INT REFERENCES plants(id),temperature FLOAT,humidity FLOAT,soil_moisture FLOAT,light_intensity FLOAT,timestamp TIMESTAMP DEFAULT now());
+CREATE TABLE IF NOT EXISTS alerts(id SERIAL PRIMARY KEY,plant_id INT REFERENCES plants(id),alert_type VARCHAR(40),message TEXT,severity VARCHAR(20),created_at TIMESTAMP DEFAULT now(),status VARCHAR(20) DEFAULT 'open');

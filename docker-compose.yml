@@ -1,0 +1,6 @@
+services:
+  db:
+    image: postgres:16
+    environment: {POSTGRES_USER: crop, POSTGRES_PASSWORD: crop, POSTGRES_DB: cropdb}
+    ports: ["5432:5432"]
+    volumes: ["./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql"]

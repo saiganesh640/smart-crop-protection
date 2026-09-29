@@ -1,0 +1,16 @@
+.venv/
+.venv-1/
+node_modules/
+
+__pycache__/
+*.py[cod]
+
+.ipynb_checkpoints/
+
+.env
+.env.*
+
+!.env.example
+
+.vscode/
+.idea/
